@@ -29,3 +29,8 @@ func soma(i, j int) (int, error) {
 	}
 	return n, nil
 }
+
+/*
+Devemos SEMPRE adicionar informação ao erro, não importa quão pequena seja a função
+O jeito mais fácil que adicionar informação a um erro é usando fmt.Errorf("%w", err). O exemplo acima é o "mais trabalhoso".
+*/
