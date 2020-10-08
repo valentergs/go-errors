@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -26,9 +27,15 @@ func main() {
 		}
 	*/
 
-	err := copiarArq("arq2.txt", "arq1.txt")
+	destino := "arq2.txt"
+	origem := "arq1.txt"
+	err := copiarArq(destino, origem)
 	if err != nil {
-		log.Panicln("erro ao exec copiarArq():", err)
+		// A checagem do tipo erro (errors.Is), geralmente é feito no main(), não na função de origem
+		if errors.Is(err, os.ErrNotExist) {
+			fmt.Printf("Arquivo %s não existe\n", origem)
+		}
+		log.Println("erro ao exec copiarArq():", err)
 	}
 }
 
